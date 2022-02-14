@@ -1,0 +1,9 @@
+[
+  {
+    "id": "1",
+    "enum": "get-user",
+    "description": "URL para busca dos utilizadores",
+    "type": "get",
+    "url": "localhost:3000/users"
+  }
+]

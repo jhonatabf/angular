@@ -1,0 +1,91 @@
+<header>
+  <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+    <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+      <img src="./assets/images/logo_light.png" alt="" />
+    </a>
+    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+      <form>
+        <!--Component Select dos hospitais.-->
+        <select class="form-select" #evento (change)="onChangeHospital(evento.value)">
+          <option value="0">Selecione o hospital</option>
+          <option *ngFor="let optionHospital of hospitalList" [value]="optionHospital.id"> {{ optionHospital.name }}
+          </option>
+        </select>
+        <div *ngIf="selectedHospital == '0' && eventoHospital; then hospNotSelected"></div>
+        <div *ngIf="eventoHospital && tmpForm.value.nome == ''"></div>
+        <!-- Alerta de obrigação de seleção de hospital-->
+        <ng-template #hospNotSelected>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            É necessário selecionar o hospital que deseja administrar
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        </ng-template>
+        <!--Fim do Component select de hospital-->
+      </form>
+    </nav>
+  </div>
+
+  <div class="pb-md-4 mx-auto text-left">
+    <h3 class="fw-normal">Desbloqueio do utilizador</h3>
+  </div>
+</header>
+
+<main>
+  <div class="row row-cols-1 row-cols-md-1 mb-1 text-left">
+    <div class="col">
+      <div class="col-12">
+        <p class="fs-6 text-muted">Para desbloquear o utilizador informe seu nome de utilizador ou parte do seu nome.
+        </p>
+        <!-- Form do input text de nome do utilizador -->
+        <label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label>
+        <form #tmpForm="ngForm" (ngSubmit)="getUserList(tmpForm.value.nome)">
+          <div class="input-group">
+            <input type="text" class="form-control" ngModel id="inlineFormInputGroupUsername" name="nome"
+              placeholder="Nome do utilizador">
+            <button style="color: white;" type="submit" class="btn btn-info">BUSCAR</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row row-cols-1 row-cols-md-1 mb-1 text-left">
+    <div class="col">
+      <div class="col-12">
+        <!-- Tabela dos utilizadores -->
+        <br>
+        <div class="card" *ngIf="userList">
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Situação</th>
+                  <th scope="col">Ação</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of userList">
+                  <td> {{user.id}} </td>
+                  <td> {{user.name}} </td>
+                  <td> {{user.email}} </td>
+                  <div *ngIf="user.ative == 'S'; then tpAtivo else tpInativo"></div>
+                  <ng-template #tpAtivo>
+                    <td>Ativo</td>
+                    <td></td>
+                  </ng-template>
+                  <ng-template #tpInativo>
+                    <td>Inativo</td>
+                    <td *ngIf="user.ative == 'N'"><button type="button"
+                        class="btn btn-outline-danger btn-sm">DESBLOQUEAR</button></td>
+                  </ng-template>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
