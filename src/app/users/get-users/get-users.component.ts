@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { User } from 'src/app/shared/models/usuarios.model';
 import { Hospital } from 'src/app/shared/models/hospital.model';
 import { GetUsersService } from 'src/app/shared/services/get-users.service';
 import { GetHospitalService } from 'src/app/shared/services/get-hospital.service';
@@ -11,7 +10,7 @@ import { GetHospitalService } from 'src/app/shared/services/get-hospital.service
   styleUrls: ['./get-users.component.css'],
 })
 export class GetUsersComponent implements OnInit {
-  userList: User[];
+  userList: any;
   hospitalList: Hospital[];
   eventoHospital: boolean = false;
   selectedHospital: string = '0';
@@ -30,7 +29,7 @@ export class GetUsersComponent implements OnInit {
       this.userService
         .listUsers(name, this.selectedHospital)
         .subscribe((data) => {
-          this.userList = data.users;
+          this.userList = data;
           console.log(name);
         });
     } else {

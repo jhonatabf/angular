@@ -3,7 +3,7 @@
     <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
       <img src="./assets/images/logo_light.png" alt="" />
     </a>
-    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+    <nav class="d-inline-flex mt-2 mt-md-2 ms-md-auto">
       <form>
         <!--Component Select dos hospitais.-->
         <select class="form-select" #evento (change)="onChangeHospital(evento.value)">
@@ -55,7 +55,8 @@
         <br>
         <div class="card" *ngIf="userList">
           <div class="card-body">
-            <table class="table">
+            <div class="table-responsive">
+            <table class="table table-responsive">
               <thead>
                 <tr>
                   <th scope="col">ID</th>
@@ -67,22 +68,23 @@
               </thead>
               <tbody>
                 <tr *ngFor="let user of userList">
-                  <td> {{user.id}} </td>
-                  <td> {{user.name}} </td>
-                  <td> {{user.email}} </td>
-                  <div *ngIf="user.ative == 'S'; then tpAtivo else tpInativo"></div>
+                  <td> {{user.ID}} </td>
+                  <td> {{user.NAME}} </td>
+                  <td> {{user.EMAIL}} </td>
+                  <div *ngIf="user.ATIVE == 'S'; then tpAtivo else tpInativo"></div>
                   <ng-template #tpAtivo>
                     <td>Ativo</td>
                     <td></td>
                   </ng-template>
                   <ng-template #tpInativo>
                     <td>Inativo</td>
-                    <td *ngIf="user.ative == 'N'"><button type="button"
+                    <td *ngIf="user.ATIVE == 'N'"><button type="button"
                         class="btn btn-outline-danger btn-sm">DESBLOQUEAR</button></td>
                   </ng-template>
                 </tr>
               </tbody>
             </table>
+            </div>
           </div>
         </div>
       </div>

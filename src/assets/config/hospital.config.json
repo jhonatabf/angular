@@ -1,11 +1,11 @@
 {
   "hospitals":[
     {
-      "id": "1",
+      "id": "a",
       "name": "Hospital Central A"
     },
     {
-      "id": "2",
+      "id": "b",
       "name": "Hospital Central B"
     }
   ]

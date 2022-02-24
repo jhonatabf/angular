@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import {UserObject} from '../models/usuarios.model';
 import {rotasApi} from '../../../assets/config/api.config';
 
 @Injectable({
@@ -21,7 +20,7 @@ export class GetUsersService {
 
   constructor(private http: HttpClient) { }
 
-  public listUsers(name: string, hospital: string): Observable<UserObject>{
-    return this.http.get<UserObject>(this.userApiUrl+'?name='+name+'&hospital='+hospital);
+  public listUsers(name: string, hospital: string): Observable<any>{
+    return this.http.get<any>(this.userApiUrl+'/'+hospital+'?name='+name);
   }
 }
