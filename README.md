@@ -42,17 +42,25 @@ Responsável por listar os hospitais que serão apresentados na caixa de seleç�
 Somente foi criado a chamada a API de busca de utilizadores, essa chamada utiliza a variavel **getUser** do arquivo de configuração **api.config.ts**.
 #### Payload
 ```
-{
-   "hospital":"string",
-   "users":[
+[
       {
-         "id":"string",
-         "name":" string",
-         "email":"string",
-         "ative":"string"
+        "ID": number,
+        "NAME": string,
+        "PASSWORD": string,
+        "EMAIL": string,
+        "MOBILE_PHONE": string,
+        "IP": string,
+        "PORT": string,
+        "ID_PROFILE": number,
+        "ATTEMPTS_ERRORS": number,
+        "LAST_LOGIN": string,
+        "STATUS_LOCK": string,
+        "DATE_INSERT": string,
+        "DATE_UPDATE": string,
+        "ID_USER": number,
+        "ATIVE": string
       }
-   ]
-}
+]
 ```
 #### Atributos
 - **hospital**: string que deve receber o código do hospital que realizará a comunicação.
