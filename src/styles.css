@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-.bg_info{
-  color: #fff;
-  background-color: #00D6DE;
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: 'Tangerine', serif;
+  font-size: 48px;
+}
+.full-width {
+  width: 100%;
+  border: 7px solid #DFDFDF;
 }

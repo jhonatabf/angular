@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl, Validators} from '@angular/forms';
 
 import { Hospital } from 'src/app/shared/models/hospital.model';
 import { GetUsersService } from 'src/app/shared/services/get-users.service';
@@ -14,6 +15,7 @@ export class GetUsersComponent implements OnInit {
   hospitalList: Hospital[];
   eventoHospital: boolean = false;
   selectedHospital: string = '0';
+  hospitalControl: FormControl;
 
   constructor(
     public userService: GetUsersService,
@@ -25,17 +27,18 @@ export class GetUsersComponent implements OnInit {
   }
 
   getUserList(name: string) {
-    if (this.selectedHospital != '0' && this.eventoHospital == true) {
+    this.hospitalControl = new FormControl('', Validators.required);
+    //if (this.selectedHospital != '0' && this.eventoHospital == true) {
       this.userService
         .listUsers(name, this.selectedHospital)
         .subscribe((data) => {
           this.userList = data;
           console.log(name);
         });
-    } else {
-      console.log(this.selectedHospital);
-      console.log(name);
-    }
+    //} else {
+    //  console.log(this.selectedHospital);
+    //  console.log(name);
+    //}
   }
 
   getHospList() {
@@ -47,5 +50,6 @@ export class GetUsersComponent implements OnInit {
   onChangeHospital(eventName: string) {
     this.selectedHospital = eventName;
     this.eventoHospital = true;
+    console.log(eventName);
   }
 }

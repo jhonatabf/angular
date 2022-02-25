@@ -6,11 +6,13 @@
     <nav class="d-inline-flex mt-2 mt-md-2 ms-md-auto">
       <form>
         <!--Component Select dos hospitais.-->
-        <select class="form-select" #evento (change)="onChangeHospital(evento.value)">
-          <option value="0">Selecione o hospital</option>
-          <option *ngFor="let optionHospital of hospitalList" [value]="optionHospital.id"> {{ optionHospital.name }}
-          </option>
-        </select>
+        <mat-form-field >
+          <mat-label>Hospital</mat-label>
+          <mat-select #evento (valueChange)="onChangeHospital(evento.value)" required>
+            <mat-option *ngFor="let optionHospital of hospitalList" [value]="optionHospital.id">
+              {{optionHospital.name}}
+            </mat-option>
+          </mat-select>
         <div *ngIf="selectedHospital == '0' && eventoHospital; then hospNotSelected"></div>
         <div *ngIf="eventoHospital && tmpForm.value.nome == ''"></div>
         <!-- Alerta de obrigação de seleção de hospital-->
@@ -21,6 +23,7 @@
           </div>
         </ng-template>
         <!--Fim do Component select de hospital-->
+      </mat-form-field>
       </form>
     </nav>
   </div>
@@ -39,11 +42,15 @@
         <!-- Form do input text de nome do utilizador -->
         <label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label>
         <form #tmpForm="ngForm" (ngSubmit)="getUserList(tmpForm.value.nome)">
-          <div class="input-group">
-            <input type="text" class="form-control" ngModel id="inlineFormInputGroupUsername" name="nome"
-              placeholder="Nome do utilizador">
-            <button style="color: white;" type="submit" class="btn btn-info">BUSCAR</button>
+          <div class="full-width" >
+            <mat-form-field>
+              <mat-label>Nome do utilizador</mat-label>
+              <input type="text" matInput ngModel id="inlineFormInputGroupUsername" name="nome" placeholder="Informe o nome do utilizador desejado">
+            </mat-form-field>
           </div>
+            <button style="color: white;" type="submit" class="btn btn-info">BUSCAR</button>
+
+
         </form>
       </div>
     </div>
